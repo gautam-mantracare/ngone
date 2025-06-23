@@ -1,1 +1,48 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Signika:wght@300..700&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: Inter, sans-serif;
+  --font-display: "Lexend Deca", Inter, sans-serif;
+  --color-header-gradient-start: #e3ffe7;
+  --color-header-gradient-stop: #d9e7ff;
+
+  --color-header-gradient-start-dark: #0f2027;
+  --color-header-gradient-stop-dark: #203a43;
+}
+
+@layer base {
+  body {
+    background: var(--color-white);
+    color: var(--color-gray-900);
+    @variant dark {
+      background: var(--color-gray-900);
+      color: var(--color-white);
+    }
+  }
+
+  a[role="button"] {
+    @apply px-4 py-1 rounded-full;
+  }
+}
+
+@layer utilities {
+  .header-gradient {
+    @apply bg-gradient-to-l from-header-gradient-start to-header-gradient-stop;
+
+    @variant dark {
+      @apply from-header-gradient-start-dark to-header-gradient-stop-dark;
+    }
+  }
+
+  .nav-link {
+    @apply hover:bg-black/5 rounded-full;
+  }
+}
+
+@utility icon-size-* {
+  font-variation-settings: "opsz" clamp(20, --value(integer), 48);
+  font-size: calc(--value(integer) * 1px) !important;
+}
